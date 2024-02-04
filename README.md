@@ -16,7 +16,7 @@ Deveremos criar uma RESTful API que permitira:
 - Detalhar Perfil do funcionário Logado
 - Editar Perfil do funcionário Logado
 - Cadastrar Categorias
-- Listar categorias -- 1ª Sprint até aqui!
+- Listar categorias ✅ -- 1ª Sprint até aqui!
 - Cadastrar Produto
 - Editar Produtos
 - Listar Produtos
