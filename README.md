@@ -11,11 +11,11 @@
 
 Deveremos criar uma RESTful API que permitira:
 
-- Cadastrar funcionário 
-- Fazer Login do funcionário 
-- Detalhar Perfil do funcionário Logado
-- Editar Perfil do funcionário Logado
-- Cadastrar Categorias
+- Cadastrar funcionário ✅
+- Fazer Login do funcionário ✅
+- Detalhar Perfil do funcionário Logado ✅
+- Editar Perfil do funcionário Logado ✅
+- Cadastrar Categorias ✅
 - Listar categorias ✅ -- 1ª Sprint até aqui!
 - Cadastrar Produto
 - Editar Produtos

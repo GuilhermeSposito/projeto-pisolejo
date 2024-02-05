@@ -11,3 +11,11 @@ insert into categorias (descricao) values ('Tijolo'),
 ('Ferramentas em geral'),('Madeiras'),
 ('Impermeabilizantes'),('Paineis e pias')
 
+create table funcionarios(
+	id serial primary key,
+  nome text not null,
+  email text not null unique,
+  senha text not null 
+);
+
+
