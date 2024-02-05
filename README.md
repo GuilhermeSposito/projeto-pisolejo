@@ -8,6 +8,10 @@
 ![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 ![postgree](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
+**link do deploy:**
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/
+```
 
 Deveremos criar uma RESTful API que permitira:
 
