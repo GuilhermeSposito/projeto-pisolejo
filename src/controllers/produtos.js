@@ -47,7 +47,56 @@ const listarProdutos = async (req, res) => {
     }
 }
 
+const editarProduto = async (req, res) => {
+    try {
+        await produtoSchema.validate(req.body)
+        const { descricao, quantidade_estoque, valor, categoria_id } = req.body
+        const { id } = req.params
+
+        const verifExistencia = await knex('produtos').where({ id }).first()
+        if (!verifExistencia) {
+
+            return res
+                .status(400)
+                .json({
+                    status_code: 400,
+                    message: "Id passado como parâmetro de rota não existe no Banco de dados!"
+                })
+
+        }
+
+
+        const verfDuplicidade = await knex('produtos').where({ descricao }).first()
+        if (verfDuplicidade && verfDuplicidade.id != id) {
+
+            return res
+                .status(400)
+                .json({
+                    status_code: 400,
+                    message: "Produto já existente no banco de dados!"
+                })
+
+        }
+
+        const update = await knex('produtos')
+            .update({ descricao, quantidade_estoque, valor, categoria_id })
+            .where({ id })
+            .returning('*')
+
+        return res
+            .status(201)
+            .json({
+                status_code: 200,
+                message: 'Produto modificado com sucesso!',
+                produto: update
+            })
+    } catch (error) {
+        return res.status(400).json({ message: error.message })
+    }
+}
+
 module.exports = {
     cadastrarProduto,
-    listarProdutos
+    listarProdutos,
+    editarProduto
 }
