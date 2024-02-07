@@ -1,5 +1,6 @@
 const produtoSchema = require("../tests/produtoSchemas")
 const knex = require('../data/conexaoKnex')
+const { number } = require("yup")
 
 const cadastrarProduto = async (req, res) => {
     try {
@@ -114,8 +115,37 @@ const editarProduto = async (req, res) => {
     }
 }
 
+const detalharProduto = async (req, res) => {
+    try {
+        const { id } = req.params
+
+
+        const verfProduto = await knex('produtos').where({ id }).first()
+        if (!verfProduto) {
+
+            return res
+                .status(400)
+                .json({
+                    status_code: 400,
+                    message: "Id passado como parâmetro de rota não existe no Banco de dados!"
+                })
+
+        }
+
+        return res
+            .status(200)
+            .json({
+                status_code: 200,
+                produto: verfProduto
+            })
+    } catch (error) {
+        return res.status(400).json({ message: error.message })
+    }
+}
+
 module.exports = {
     cadastrarProduto,
     listarProdutos,
-    editarProduto
+    editarProduto,
+    detalharProduto
 }
