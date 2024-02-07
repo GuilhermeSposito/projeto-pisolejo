@@ -106,7 +106,8 @@ const editarProduto = async (req, res) => {
             .json({
                 status_code: 200,
                 message: 'Produto modificado com sucesso!',
-                produto: update
+                produto: update,
+                funcionario: req.funcionario
             })
     } catch (error) {
         return res.status(400).json({ message: error.message })
