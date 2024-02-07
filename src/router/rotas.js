@@ -19,7 +19,8 @@ const validaLogin = require('../middlewares/middlewareDeLogin')
 const {
     cadastrarProduto,
     listarProdutos,
-    editarProduto
+    editarProduto,
+    detalharProduto
 } = require('../controllers/produtos')
 
 rotas.get('/teste', teste)
@@ -34,5 +35,6 @@ rotas.put('/funcionario', editarPerfilFuncionario)
 rotas.post('/produtos', cadastrarProduto)
 rotas.put('/produtos/:id', editarProduto)
 rotas.get('/produtos', listarProdutos)
+rotas.get('/produtos/:id', detalharProduto)
 
 module.exports = rotas
