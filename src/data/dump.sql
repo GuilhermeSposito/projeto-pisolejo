@@ -19,3 +19,10 @@ create table funcionarios(
 );
 
 
+create table produtos(
+	id serial primary key,
+  descricao text not null,
+  quantidade_estoque int not null default 0,
+  valor int not null default 0,
+	categoria_id int references categorias(id)
+);
