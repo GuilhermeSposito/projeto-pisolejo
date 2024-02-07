@@ -23,7 +23,7 @@ Deveremos criar uma RESTful API que permitira:
 - Listar categorias ✅ -- 1ª Sprint até aqui!
 - Cadastrar Produto ✅
 - Editar Produtos
-- Listar Produtos
+- Listar Produtos ✅
 - Detalhar Produto
 - Deletar produto por id
 - Cadastrar Cliente -- 2ª Sprint até aqui
