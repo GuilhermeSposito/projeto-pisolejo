@@ -13,7 +13,14 @@ const cadastrarProduto = async (req, res) => {
         })
 
         if (verifDuplicidade) {
-            return res.status(400).json({ message: "Produto já existente no banco de dados!" })
+
+            return res
+                .status(400)
+                .json({
+                    status_code: 400,
+                    message: "Produto já existente no banco de dados!"
+                })
+
         }
 
         const categorias = await knex('categorias')
@@ -22,14 +29,26 @@ const cadastrarProduto = async (req, res) => {
         })
 
         if (!verifCategoriaExiste) {
-            return res.status(400).json({ message: "Categoria inexistente!" })
+
+            return res
+                .status(400)
+                .json({
+                    status_code: 400,
+                    message: "Categoria inexistente!"
+                })
+
         }
 
         const insertProduto = await knex('produtos')
             .insert({ descricao, quantidade_estoque, valor, categoria_id })
             .returning('*')
 
-        return res.status(201).json(insertProduto)
+        return res
+            .status(201)
+            .json({
+                status_code: 201,
+                message: "Produto inserido com sucesso!"
+            })
     } catch (error) {
         return res.status(400).json({ message: error.message })
     }
@@ -64,7 +83,6 @@ const editarProduto = async (req, res) => {
                 })
 
         }
-
 
         const verfDuplicidade = await knex('produtos').where({ descricao }).first()
         if (verfDuplicidade && verfDuplicidade.id != id) {
