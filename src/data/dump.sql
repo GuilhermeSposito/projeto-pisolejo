@@ -26,3 +26,16 @@ create table produtos(
   valor int not null default 0,
 	categoria_id int references categorias(id)
 );
+
+create table clientes(
+	id serial primary key,
+	nome text not null, 
+	email text not null unique,
+	cpf varchar(11) not null unique,
+	cep text,
+  rua text,
+  numero text,
+  bairro text,
+  cidade text,
+  estado text
+);
