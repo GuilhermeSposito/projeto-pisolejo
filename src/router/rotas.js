@@ -16,7 +16,11 @@ const teste = require('../controllers/teste')
 const login = require('../controllers/login')
 
 const validaLogin = require('../middlewares/middlewareDeLogin')
-const { cadastrarProduto, listarProdutos } = require('../controllers/produtos')
+const {
+    cadastrarProduto,
+    listarProdutos,
+    editarProduto
+} = require('../controllers/produtos')
 
 rotas.get('/teste', teste)
 rotas.get('/categorias', listarCategorias)
@@ -24,10 +28,11 @@ rotas.post('/categorias', cadastrarCategoria)
 rotas.post('/funcionarios', cadastroDeFuncionario)
 rotas.post('/login', login)
 //a partir daqui deve ser enviado um token de login
-rotas.use(validaLogin)
+//rotas.use(validaLogin)
 rotas.get('/funcionario', detalharPerfilFuncionarioLogado)
 rotas.put('/funcionario', editarPerfilFuncionario)
 rotas.post('/produtos', cadastrarProduto)
+rotas.put('/produtos/:id', editarProduto)
 rotas.get('/produtos', listarProdutos)
 
 module.exports = rotas
