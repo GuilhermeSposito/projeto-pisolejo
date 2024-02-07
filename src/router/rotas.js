@@ -24,7 +24,7 @@ rotas.post('/categorias', cadastrarCategoria)
 rotas.post('/funcionarios', cadastroDeFuncionario)
 rotas.post('/login', login)
 //a partir daqui deve ser enviado um token de login
-//rotas.use(validaLogin)
+rotas.use(validaLogin)
 rotas.get('/funcionario', detalharPerfilFuncionarioLogado)
 rotas.put('/funcionario', editarPerfilFuncionario)
 rotas.post('/produtos', cadastrarProduto)
