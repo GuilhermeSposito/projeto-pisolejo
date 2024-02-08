@@ -26,7 +26,7 @@ Deveremos criar uma RESTful API que permitira:
 - Listar Produtos ✅
 - Deletar produto por id ✅
 - Cadastrar Cliente ✅ -- 2ª Sprint até aqui!
-- Detalhar perfil do cliente pelo id 
+- Detalhar perfil do cliente pelo id ✅
 - Adicionar endpoint para envio de email para o cliente quando for cadastrado
 - Aprimorar o cadastro do cliente
 - Editar Cliente
