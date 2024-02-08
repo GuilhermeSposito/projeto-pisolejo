@@ -39,3 +39,19 @@ create table clientes(
   cidade text,
   estado text
 );
+
+create table pedidos(
+	id serial primary key,
+  data timestamp default now(),
+  cliente_id int references clientes(id) not null,
+  observacao text,
+  valor_total int not null 
+);
+
+create table pedido_produtos(
+	id serial primary key,
+  pedido_id int references pedidos(id),
+  produto_id int references produtos(id),
+  quantidade_produto int not null,
+  valor_produto int not null
+);
