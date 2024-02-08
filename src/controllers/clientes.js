@@ -43,4 +43,32 @@ const cadastraCliente = async (req, res) => {
     }
 }
 
-module.exports = { cadastraCliente }
+const detalhaCliente = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const cliente = await knex('clientes').where({ id }).first()
+        if (!cliente) {
+            return res
+                .status(400)
+                .json({
+                    status_code: 400,
+                    message: "Cliente não entrado no banco de dados com esse id enviado!"
+                })
+        }
+
+        return res
+            .status(200)
+            .json({
+                status_code: 200,
+                cliente
+            })
+    } catch (error) {
+        return res.status(400).json({ message: error.message })
+    }
+}
+
+module.exports = {
+    cadastraCliente,
+    detalhaCliente
+}
