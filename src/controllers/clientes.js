@@ -1,5 +1,8 @@
 const knex = require('../data/conexaoKnex')
 const clientesSchemas = require('../tests/clientesSchemas')
+const transport = require('../utils/conexaoNodmailer')
+const fs = require('fs/promises')
+const handlebars = require('handlebars')
 
 const cadastraCliente = async (req, res) => {
     try {
@@ -30,6 +33,16 @@ const cadastraCliente = async (req, res) => {
             .insert({ nome, email, cpf, cep, rua, numero, bairro, cidade, estado })
             .returning('*')
 
+
+        const htmlEmail = await fs.readFile('./src/templates/emailBemVindo.html')
+        const htmlCompilado = handlebars.compile(htmlEmail.toString())
+
+        const sendMail = await transport.sendMail({
+            from: `"Pisolejo" <${process.env.MAIL_SEND}>`,
+            to: `"${email}"`,
+            subject: "Bem Vindo a Pisolejo",
+            html: htmlCompilado()
+        });
 
         return res.status(201)
             .json({
