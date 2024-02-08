@@ -28,7 +28,7 @@ Deveremos criar uma RESTful API que permitira:
 - Cadastrar Cliente ✅ -- 2ª Sprint até aqui!
 - Detalhar perfil do cliente pelo id ✅
 - Aprimorar o cadastro do cliente ✅
-- Editar Cliente
+- Editar Cliente ✅
 - Cadastrar pedido
 - Listar pedidos -- 3ª Sprint até aqui 
 
