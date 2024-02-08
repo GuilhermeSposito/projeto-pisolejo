@@ -29,7 +29,7 @@ Deveremos criar uma RESTful API que permitira:
 - Detalhar perfil do cliente pelo id ✅
 - Aprimorar o cadastro do cliente ✅
 - Editar Cliente ✅
-- Cadastrar pedido
+- Cadastrar pedido ✅
 - Listar pedidos -- 3ª Sprint até aqui 
 
 
