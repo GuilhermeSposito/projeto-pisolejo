@@ -45,7 +45,8 @@ create table pedidos(
   data timestamp default now(),
   cliente_id int references clientes(id) not null,
   observacao text,
-  valor_total int not null 
+  valor_total int not null,
+  funcionario_id int references funcionarios(id) 
 );
 
 create table pedido_produtos(
@@ -53,6 +54,5 @@ create table pedido_produtos(
   pedido_id int references pedidos(id),
   produto_id int references produtos(id),
   quantidade_produto int not null,
-  valor_produto int not null,
-  funcionario_id int references funcionarios(id)
+  valor_produto int not null
 );
