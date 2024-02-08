@@ -53,5 +53,6 @@ create table pedido_produtos(
   pedido_id int references pedidos(id),
   produto_id int references produtos(id),
   quantidade_produto int not null,
-  valor_produto int not null
+  valor_produto int not null,
+  funcionario_id int references funcionarios(id)
 );
