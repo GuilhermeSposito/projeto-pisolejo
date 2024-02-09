@@ -103,26 +103,6 @@ Essa é a rota que será chamada quando o funcionario cadastrado quiser listar t
 
 ---------------------------
 
-#### `POST` `/categorias`
-
-```javascript
-https://kind-jade-sturgeon-gear.cyclic.app/categoria
-```
-
-Essa é a rota que será utilizada para cadastrar uma nova categoria no sistema.
-
-Critérios de aceite:
-
-    - Campos obrigatórios: 
-        - descricao
-
-#### **Exemplo de requisição**
-```javascript
-{
-    "descricao": "Exemplo"
-}
-```
---------------------------------------------------
 
 #### `POST` `/funcionarios`
 
@@ -201,6 +181,27 @@ Critérios de aceite:
 }
 ```
 -------------------------------------------------------
+
+#### `POST` `/categorias`
+
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/categoria
+```
+
+Essa é a rota que será utilizada para cadastrar uma nova categoria no sistema.
+
+Critérios de aceite:
+
+    - Campos obrigatórios: 
+        - descricao
+
+#### **Exemplo de requisição**
+```javascript
+{
+    "descricao": "Exemplo"
+}
+```
+--------------------------------------------------
 
 #### `POST` `/produto`
 
