@@ -24,7 +24,7 @@ Deveremos criar uma RESTful API que permitira:
 - Cadastrar Produto ✅
 - Editar Produtos ✅
 - Listar Produtos ✅
-- Deletar produto por id 
+- Deletar produto por id ✅
 - Cadastrar Cliente ✅ -- 2ª Sprint até aqui!
 - Detalhar perfil do cliente pelo id ✅
 - Aprimorar o cadastro do cliente ✅
