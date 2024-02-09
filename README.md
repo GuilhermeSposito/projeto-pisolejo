@@ -179,7 +179,7 @@ Essa é a rota que permite o Funcionário logado a visualizar os dados do seu pr
 
 #### `PUT` `/funcionario`
 
-Essa é a rota que permite o funcioário logado atualizar informações de seu próprio cadastro, de acordo com a validação do token de autenticação.
+Essa é a rota que permite o funcionário logado atualizar informações de seu próprio cadastro, de acordo com a validação do token de autenticação.
 
 ```javascript
 https://kind-jade-sturgeon-gear.cyclic.app/funcionario
@@ -207,7 +207,7 @@ Critérios de aceite:
 ```javascript
 https://kind-jade-sturgeon-gear.cyclic.app/produto
 ```
-Essa é a rota que permite o funcinário logado cadastrar um novo produto no sistema.
+Essa é a rota que permite o funcionário logado cadastrar um novo produto no sistema.
 
 Critérios de aceite:
 
@@ -402,6 +402,8 @@ Essa é a rota que será utilizada para cadastrar um novo pedido no sistema.
         }
     ]
 }
+
+**obs: Após o pedido ser cadastrado será enviado um email para o cliente informando que o pedido foi cadastrado e o valor total!**
 ```
 
 --------------------------------------------------------
@@ -453,6 +455,17 @@ Retorno:
     }
 ]
 ```
+--------------------------------------------------------
 
+#### `DELETE` `/pedido/id`
+
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/produtos/1
+```
+
+Essa é a rota que será chamada quando o funcionário logado quiser excluir um pedido cadastrados.  
+
+**obs: Após o pedido for exluido será enviado um email para o cliente do pedido avisando sobre!**
+--------------------------------------------------------
 
 
