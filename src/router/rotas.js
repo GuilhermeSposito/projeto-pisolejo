@@ -20,7 +20,8 @@ const {
     cadastrarProduto,
     listarProdutos,
     editarProduto,
-    detalharProduto
+    detalharProduto,
+    deletarProduto
 } = require('../controllers/produtos')
 const {
     cadastraCliente,
@@ -47,5 +48,6 @@ rotas.get('/cliente/:id', detalhaCliente)
 rotas.put('/cliente/:id', editaCliente)
 rotas.post('/pedido', cadastraPedido)
 rotas.get('/pedidos', listarPedido)
+rotas.delete('/produto/:id', deletarProduto)
 
 module.exports = rotas

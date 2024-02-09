@@ -59,7 +59,7 @@ const listarProdutos = async (req, res) => {
     try {
         const produtos = await knex('produtos')
             .select('produtos.id', 'produtos.descricao', 'produtos.quantidade_estoque', 'produtos.valor', 'categorias.descricao as descricao_categoria', 'produtos.categoria_id')
-            .join('categorias', 'produtos.categoria_id', '=', 'categorias.id').debug()
+            .join('categorias', 'produtos.categoria_id', '=', 'categorias.id')
 
         return res.status(200).json(produtos)
     } catch (error) {
@@ -143,9 +143,38 @@ const detalharProduto = async (req, res) => {
     }
 }
 
+const deletarProduto = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const produto = await knex('produtos').where({ id }).first()
+        if (!produto) {
+            return res.status(400)
+                .json({
+                    status_code: 400,
+                    message: "Produto com id enviado não encontrado no banco de dados!"
+                })
+        }
+
+        const deletProduto = await knex('produtos').where({ id }).delete()
+
+        return res.status(203).json()
+    } catch (error) {
+        if (error.code == '23503') {
+            return res.status(400).json({
+                status_code: 400,
+                message: "Não é possivel excluir um produto que se encontra em um pedido!"
+            })
+        }
+
+        return res.status(400).json({ message: error.message })
+    }
+}
+
 module.exports = {
     cadastrarProduto,
     listarProdutos,
     editarProduto,
-    detalharProduto
+    detalharProduto,
+    deletarProduto
 }
