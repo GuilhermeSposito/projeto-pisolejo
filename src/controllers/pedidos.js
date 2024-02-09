@@ -166,7 +166,43 @@ const listarPedido = async (req, res) => {
     }
 }
 
+const deletarPedido = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const pedido = await knex('pedidos').where({ id }).first()
+        if (!pedido) {
+            return res
+                .status(400)
+                .json({
+                    status_code: 400,
+                    message: "Pedido com id soliitado não encontrado no banco de dados!"
+                })
+        }
+
+        const deletePedidoProdutos = await knex('pedido_produtos').where({ pedido_id: id }).delete()
+        const deletaPedido = await knex('pedidos').where({ id }).delete()
+
+        const verfClienteExiste = await knex('clientes').where({ id: pedido.cliente_id }).first()
+        //envio de email confirmando o delete
+        const htmlEmail = await fs.readFile('./src/templates/emailComfirmandoCancelamento.html')
+        const htmlCompilado = handlebars.compile(htmlEmail.toString())
+
+        const sendMail = await transport.sendMail({
+            from: `"Pisolejo" <${process.env.MAIL_SEND}>`,
+            to: `"${verfClienteExiste.email}"`,
+            subject: "Pedido Cancelado",
+            html: htmlCompilado({ nomecliente: verfClienteExiste.nome, valortotal: `${(pedido.valor_total / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}` })
+        });
+
+        return res.status(203).json()
+    } catch (error) {
+        return res.status(400).json({ message: error.message })
+    }
+}
+
 module.exports = {
     cadastraPedido,
-    listarPedido
+    listarPedido,
+    deletarPedido
 }
