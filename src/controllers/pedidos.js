@@ -102,4 +102,71 @@ const cadastraPedido = async (req, res) => {
     }
 }
 
-module.exports = { cadastraPedido }
+const listarPedido = async (req, res) => {
+    try {
+        const { cliente_id } = req.query
+
+        if (cliente_id) {
+            const pedidos = await knex('pedidos')
+                .select('pedidos.*', 'funcionarios.nome as nome_funcionario')
+                .join('funcionarios', 'pedidos.funcionario_id', '=', 'funcionarios.id').
+                where({ cliente_id })
+
+            if (pedidos.length == 0) {
+                return res
+                    .status(400)
+                    .json({
+                        status_code: 400,
+                        message: "Pedido com cliente_id informado não encontrado no banco de dados!"
+                    })
+            }
+
+            const pedidosArray = Array()
+
+            for (objetoAtual of pedidos) {
+                const produtosPedido = await knex('pedido_produtos')
+                    .where({
+                        pedido_id: objetoAtual.id
+                    })
+
+                pedidosArray.push({
+                    pedido: objetoAtual,
+                    pedido_produtos: produtosPedido
+                })
+            }
+
+            return res
+                .status(200)
+                .json(pedidosArray)
+        }
+
+        const pedidosArray = Array()
+
+        const pedidos = await knex('pedidos')
+            .select('pedidos.*', 'funcionarios.nome as nome_funcionario')
+            .join('funcionarios', 'pedidos.funcionario_id', '=', 'funcionarios.id')
+
+        for (objetoAtual of pedidos) {
+            const produtosPedido = await knex('pedido_produtos')
+                .where({
+                    pedido_id: objetoAtual.id
+                })
+
+            pedidosArray.push({
+                pedido: objetoAtual,
+                pedido_produtos: produtosPedido
+            })
+        }
+
+        return res
+            .status(200)
+            .json(pedidosArray)
+    } catch (error) {
+        return res.status(400).json({ message: error.message })
+    }
+}
+
+module.exports = {
+    cadastraPedido,
+    listarPedido
+}

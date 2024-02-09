@@ -27,7 +27,7 @@ const {
     detalhaCliente,
     editaCliente
 } = require('../controllers/clientes')
-const { cadastraPedido } = require('../controllers/pedidos')
+const { cadastraPedido, listarPedido } = require('../controllers/pedidos')
 
 rotas.get('/teste', teste)
 rotas.get('/categorias', listarCategorias)
@@ -46,5 +46,6 @@ rotas.post('/clientes', cadastraCliente)
 rotas.get('/cliente/:id', detalhaCliente)
 rotas.put('/cliente/:id', editaCliente)
 rotas.post('/pedido', cadastraPedido)
+rotas.get('/pedidos', listarPedido)
 
 module.exports = rotas
