@@ -31,7 +31,7 @@ Deveremos criar uma RESTful API que permitira:
 - Editar Cliente ✅
 - Cadastrar pedido ✅
 - Deletar Pedido (enviando email avisando o cliente)
-- Listar pedidos -- 3ª Sprint até aqui 
+- Listar pedidos ✅ -- 3ª Sprint até aqui 
 
 
 Abaixo, listamos os possíveis **_status codes_** esperados como resposta da API.
