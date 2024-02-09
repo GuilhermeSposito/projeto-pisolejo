@@ -30,7 +30,7 @@ Deveremos criar uma RESTful API que permitira:
 - Aprimorar o cadastro do cliente ✅
 - Editar Cliente ✅
 - Cadastrar pedido ✅
-- Deletar Pedido (enviando email avisando o cliente)
+- Deletar Pedido (enviando email avisando o cliente) ✅
 - Listar pedidos ✅ -- 3ª Sprint até aqui 
 
 
