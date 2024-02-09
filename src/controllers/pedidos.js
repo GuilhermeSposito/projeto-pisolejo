@@ -180,8 +180,20 @@ const deletarPedido = async (req, res) => {
                 })
         }
 
-        const deletePedidoProdutos = await knex('pedido_produtos').where({ pedido_produto: id }).delete()
+        const deletePedidoProdutos = await knex('pedido_produtos').where({ pedido_id: id }).delete()
         const deletaPedido = await knex('pedidos').where({ id }).delete()
+
+        const verfClienteExiste = await knex('clientes').where({ id: pedido.cliente_id }).first()
+        //envio de email confirmando o delete
+        const htmlEmail = await fs.readFile('./src/templates/emailComfirmandoCancelamento.html')
+        const htmlCompilado = handlebars.compile(htmlEmail.toString())
+
+        const sendMail = await transport.sendMail({
+            from: `"Pisolejo" <${process.env.MAIL_SEND}>`,
+            to: `"${verfClienteExiste.email}"`,
+            subject: "Pedido Cancelado",
+            html: htmlCompilado({ nomecliente: verfClienteExiste.nome, valortotal: `${(pedido.valor_total / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}` })
+        });
 
         return res.status(203).json()
     } catch (error) {
