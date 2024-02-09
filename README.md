@@ -1,6 +1,6 @@
 # Projeto API rest Pisolejo.
 
-**Ferramentas que serão usadas neste projeto:**
+**Ferramentas que foram usadas neste projeto:**
 
 ![javaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 ![express](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
@@ -13,25 +13,26 @@
 https://kind-jade-sturgeon-gear.cyclic.app/
 ```
 
-Deveremos criar uma RESTful API que permitira:
+**RESTful API que permite:**
 
-- Cadastrar funcionário ✅
-- Fazer Login do funcionário ✅
-- Detalhar Perfil do funcionário Logado ✅
-- Editar Perfil do funcionário Logado ✅
-- Cadastrar Categorias ✅
-- Listar categorias ✅ -- 1ª Sprint até aqui!
-- Cadastrar Produto ✅
-- Editar Produtos ✅
-- Listar Produtos ✅
-- Deletar produto por id ✅
-- Cadastrar Cliente ✅ -- 2ª Sprint até aqui!
-- Detalhar perfil do cliente pelo id ✅
-- Aprimorar o cadastro do cliente ✅
-- Editar Cliente ✅
-- Cadastrar pedido ✅
-- Deletar Pedido (enviando email avisando o cliente) ✅
-- Listar pedidos ✅ -- 3ª Sprint até aqui 
+- Cadastrar funcionário 
+- Fazer Login do funcionário 
+- Detalhar Perfil do funcionário Logado 
+- Editar Perfil do funcionário Logado 
+- Cadastrar Categorias 
+- Listar categorias 
+- Cadastrar Produto 
+- Editar Produtos 
+- Listar Produtos 
+- Detalhar produto pelo id
+- Deletar produto por id 
+- Cadastrar Cliente 
+- Detalhar perfil do cliente pelo id 
+- Editar Cliente 
+- Cadastrar pedido
+- Deletar Pedido (enviando email avisando o cliente) 
+- Listar pedidos
+- Detalhar pedido pelo id 
 
 
 Abaixo, listamos os possíveis **_status codes_** esperados como resposta da API.
@@ -48,14 +49,14 @@ Abaixo, listamos os possíveis **_status codes_** esperados como resposta da API
 
 # **Banco de Dados:** 
 
-- Aqui seguiremos as regras para nosso banco de dados. Quais tabelas teremos e quais colunas teremos dentro das respectivas tabelas
+**Temos as Seguintes tabelas no nosso banco de dados:**
 
-Criaremos as seguintes tabelas e colunas abaixo: 
+
 
 -   Funcinarios
     -   id
     -   nome
-    -   email (campo único)
+    -   email 
     -   senha
 -   categorias
     -   id
@@ -69,8 +70,8 @@ Criaremos as seguintes tabelas e colunas abaixo:
 -   clientes
     -   id
     -   nome
-    -   email (campo único)
-    -   cpf (campo único) 
+    -   email 
+    -   cpf 
     -   cep 
     -   rua
     -   numero
@@ -90,197 +91,300 @@ Criaremos as seguintes tabelas e colunas abaixo:
     -   quantidade_produto
     -   valor_produto
 
-# **Endpoints 1ª Sprint**
+ # Endpoints
 
 #### `GET` `/categoria`
 
-Essa é a rota que será chamada quando o usuário quiser listar todas as categorias cadastradas.
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/categoria
+```
 
-As categorias a seguir precisam ser previamente cadastradas para que sejam listadas no endpoint de listagem das categorias.
+Essa é a rota que será chamada quando o funcionario cadastrado quiser listar todas as categorias cadastradas.
 
-## **Categorias**
-
--   Cimento
--   Tijolo
--   Argamassas
--   Pisos e revestimentos
--   Areia
--   Materiais hidráulicos
--   Materiais elétricos
--   Ferramentas em gera
--   Madeiras
--   Impermeabilizantes
--   Paineis e pias 
+---------------------------
 
 #### `POST` `/categorias`
+
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/categoria
+```
 
 Essa é a rota que será utilizada para cadastrar uma nova categoria no sistema.
 
 Critérios de aceite:
 
-    - Validar os campos obrigatórios: 
+    - Campos obrigatórios: 
         - descricao
+
+#### **Exemplo de requisição**
+```javascript
+{
+    "descricao": "Exemplo"
+}
+```
 --------------------------------------------------
 
 #### `POST` `/funcionarios`
+
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/funcionarios
+```
 
 Essa é a rota que será utilizada para cadastrar um novo funcionário no sistema.
 
 Critérios de aceite:
 
-    - Validar os campos obrigatórios: 
+    - Campos obrigatórios: 
         - nome
         - email
         - senha
-    - A senha deve ser criptografada utilizando algum algoritmo de criptografia confiável.
-    - O campo e-mail no banco de dados deve ser único para cada registro, não permitindo dois usuários possuírem o mesmo e-mail.
+
+#### **Exemplo de requisição**
+```javascript
+{
+    "nome": "exemploNome",
+    "email": "emailExemplo@gmail.com",
+    "senha": "exemploSenha"
+}
+```
 ------------------------------------------------------
 
 #### `POST` `/login`
 
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/login
+```
+
 Essa é a rota que permite o funcionário cadastrado realizar o login no sistema.
 
-Critérios de aceite:
-
-    - Validar se o e-mail e a senha estão corretos para o usuário em questão.
-    - Gerar um token de autenticação para o usuário.
--------------------------------------------------------    
+#### **Exemplo de requisição**
+```javascript
+{
+    "email": "emailExemplo@gmail.com",
+     "senha": "exemploSenha"
+}
+```
+------------------------------------------------------- 
+## A partir do ENDPOINT de login devera ser enviado um Bearer Token no authorization da requisição!   
 
 #### `GET` `/funcionario`
 
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/funcionario
+```
+
 Essa é a rota que permite o Funcionário logado a visualizar os dados do seu próprio perfil, de acordo com a validação do token de autenticação.
 
--------------------------------------------------------    
-
+-------------------------------------------------------
 
 #### `PUT` `/funcionario`
 
 Essa é a rota que permite o funcioário logado atualizar informações de seu próprio cadastro, de acordo com a validação do token de autenticação.
 
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/funcionario
+```
+
 Critérios de aceite:
 
-    - Validar os campos obrigatórios: 
+    - Campos obrigatórios: 
         - nome
         - email
         - senha
-    - A senha deve ser criptografada utilizando algum algoritmo de criptografia confiável.
-    - O campo e-mail no banco de dados deve ser único para cada registro, não permitindo dois usuários possuírem o mesmo e-mail.
--------------------------------------------------------    
 
-
+#### **Exemplo de requisição**
 ```javascript
-Após a conclusão dos endpoint realizar o deploy
+{
+    "nome": "exemploNome",
+    "email": "emailExemplo@gmail.com",
+    "senha": "exemploSenha"
+}
 ```
-
-# **Endpoints 2ª Sprint**
+-------------------------------------------------------
 
 #### `POST` `/produto`
 
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/produto
+```
 Essa é a rota que permite o funcinário logado cadastrar um novo produto no sistema.
 
 Critérios de aceite:
 
-    -   Validar os campos obrigatórios:
+    -   Campos obrigatórios:
         -   descricao
         -   quantidade_estoque
         -   valor
         -   categoria_id
-    -   A categoria informada na qual o produto será vinculado deverá existir.
+
+```javascript
+{
+     "descricao": "Argamassa Porcelanato Interno Cinza 20kg - Quartzolit",
+    "quantidade_estoque": 10,
+    "valor": 2716,
+    "categoria_id": 3
+}
+```
+****lembrando que o valor enviado deve ser eniado em centavos***
 --------------------------------------------------------
 
-#### `PUT` `/produto/:id`
+#### `PUT` `/produto/id`
+
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/produto/1
+```
 
 Essa é a rota que permite o funcionário logado a atualizar as informações de um produto cadastrado.
 
 Critérios de aceite:
 
-    -   Validar se existe produto para o id enviado como parâmetro na rota.
-    -   Validar os campos obrigatórios:
+    -   Campos obrigatórios:
         -   descricao
         -   quantidade_estoque
         -   valor
         -   categoria_id
     -   A categoria informada na qual o produto será vinculado deverá existir.
+
+```javascript
+{
+     "descricao": "Argamassa Porcelanato Interno Cinza 20kg - Quartzolit",
+    "quantidade_estoque": 10,
+    "valor": 2716,
+    "categoria_id": 3
+}
+```
 --------------------------------------------------------
 
 
-#### `GET` `/produto`
+#### `GET` `/produtos`
+
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/produtos
+```
 
 Essa é a rota que será chamada quando o funcionário logado quiser listar todos os produtos cadastrados.
 
-Deveremos incluir um parâmetro do tipo query **categoria_id** para que seja possível consultar produtos por categorias, de modo, que serão filtrados de acordo com o id de uma categoria.
+Neste endpoint é possivel usar um parâmetro do tipo query **categoria_id** para que seja possível consultar produtos por categorias, de modo, que serão filtrados de acordo com o id de uma categoria.
 
-Critérios de aceite:
+**Exemplo da URl:**
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/produtos?categoria_id=1
+```
 
-    - Caso seja enviado o parâmetro do tipo query **categoria_id**, filtrar os produtos de acordo com a categoria, caso o id de categoria informada exista.
-    - Caso não seja informado o parâmetro do tipo query **categoria_id** todos os produtos cadastrados deverão ser retornados.
+Retorno:
+
+    - Caso não seja informado o parâmetro do tipo query **categoria_id** todos os produtos cadastrados vão ser retornados.
 --------------------------------------------------------
 
-#### `GET` `/produto/:id`
+#### `GET` `/produto/id`
+
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/produtos/1
+```
 
 Essa é a rota que permite o funcionário logado obter um dos produtos cadastrados.  
 
-Critérios de aceite:
-
-    -   Validar se existe produto para o id enviado como parâmetro na rota.
 --------------------------------------------------------
 
-#### `DELETE` `/produto/:id`
+#### `DELETE` `/produto/id`
+
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/produtos/1
+```
 
 Essa é a rota que será chamada quando o funcionário logado quiser excluir um de seus produtos cadastrados.  
 
 Critérios de aceite:
 
-    -   Validar se existe produto para o id enviado como parâmetro na rota.
+    -   Caso o produto exista dentro de um pedido ele não pode ser excluido!.
 --------------------------------------------------------
 
 #### `POST` `/cliente`
 
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/cliente
+```
 Essa é a rota que permite o funcionário logado cadastrar um novo cliente no sistema.
 
 Critérios de aceite:
 
-    -   Validar os campos obrigatórios:
+    -   Campos obrigatórios:
         -   nome
         -   email
         -   cpf
-    -   O campo e-mail no banco de dados deve ser único para cada registro, não permitindo dois clientes possuírem o mesmo e-mail.
-    -   O campo cpf no banco de dados deve ser único para cada registro, não permitindo dois clientes possuírem o mesmo cpf.
+    -   O campo e-mail no banco de dados é único para cada registro, não permitindo dois clientes possuírem o mesmo e-mail.
+    -   O campo cpf no banco de dados é ser único para cada registro, não permitindo dois clientes possuírem o mesmo cpf.
 
-# **Endpoints 3ª Sprint**
+```javascript
+{
+  "nome": "ExemploNome",
+  "email": "ExemploEmail@email.com",
+  "cpf": "11Numeros",
+  "cep": "", (opcional)
+  "rua": "", (opcional)
+  "numero": "", (opcional)
+  "bairro": "", (opcional)
+  "cidade": "", (opcional)
+  "estado": "" (opcional)
+}
+```
+------------------------------------
+
 
 #### `PUT` `/cliente/:id`
+
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/cliente/1
+```
 
 Essa é a rota que permite o funcionário realizar atualização de um cliente cadastrado.
 
 Critérios de aceite:
 
-    -   Validar se existe cliente para o id enviado como parâmetro na rota.
+    -   Cliente para o id enviado como parâmetro na rota.
     -   Validar os campos obrigatórios:
         -   nome
         -   email
         -   cpf
-    -   O campo e-mail no banco de dados deve ser único para cada registro, não permitindo dois clientes possuírem o mesmo e-mail.
-    -   O campo cpf no banco de dados deve ser único para cada registro, não permitindo dois clientes possuírem o mesmo cpf.
+   
+   ```javascript
+{
+  "nome": "ExemploNome",
+  "email": "ExemploEmail@email.com",
+  "cpf": "11Numeros",
+  "cep": "", (opcional)
+  "rua": "", (opcional)
+  "numero": "", (opcional)
+  "bairro": "", (opcional)
+  "cidade": "", (opcional)
+  "estado": "" (opcional)
+}
+```
 --------------------------------------------------------
 
 #### `GET` `/cliente/:id`
 
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/cliente/1
+```
+
 Essa é a rota que será chamada quando o funcionario logado quiser obter um de seus clientes cadastrados.  
 
-Critérios de aceite:
 
-    -   Validar se existe cliente para o id enviado como parâmetro na rota.
 --------------------------------------------------------
 
 #### `POST` `/pedido`
+
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/pedido
+```
 
 Essa é a rota que será utilizada para cadastrar um novo pedido no sistema.
 
 **Lembre-se:** Cada pedido deverá conter ao menos um produto vinculado.
 
-**Atenção:** As propriedades produto_id e quantidade_produto devem ser informadas dentro de um array e para cada produto deverá ser criado um objeto neste array, como ilustrado no objeto de requisição abaixo.
-Só deverá ser cadastrado o pedido caso todos produtos vinculados ao pedido realmente existão no banco de dados.
+**Atenção:** As propriedades produto_id e quantidade_produto devem ser informadas dentro de um array e para cada produto será criado um objeto neste array, como ilustrado no objeto de requisição abaixo.
+
 
 ```javascript
 // Corpo da requisição para cadastro de pedido (body)
@@ -300,25 +404,25 @@ Só deverá ser cadastrado o pedido caso todos produtos vinculados ao pedido rea
 }
 ```
 
-Critérios de aceite:
-
-    -   Validar os campos obrigatórios:
-        -   cliente_id
-        -   pedido_produtos
-            -   produto_id
-            -   quantidade_produto
-    -   Validar se existe cliente para o id enviado no corpo (body) da requisição.
-    -   Validar se existe produto para cada produto_id informado dentro do array enviado no corpo (body) da requisição.
-    -   Validar se existe a quantidade em estoque de cada produto existente dentro do array, de acordo com a quantidade informada no corpo (body) da requisição.
-    -   O pedido deverá ser cadastrado, apenas, se todos os produtos estiverem validados. 
-    -   Enviar e-mail para o cliente notificando que o pedido foi efetuado com sucesso. 
 --------------------------------------------------------
 
 #### `GET` `/pedido`
 
-Essa é a rota que será chamada quando o funcionário logado quiser listar todos os pedidos cadastrados.
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/pedido
+```
 
-Deveremos incluir um parâmetro do tipo query **cliente_id** para que seja possível consultar pedidos por clientes, de modo, que serão filtrados de acordo com o id de um cliente.
+
+Neste endpoint é possivel usar um parâmetro do tipo query **cliente_id** para que seja possível consultar pedidos por cliente, de modo, que serão filtrados de acordo com o id de um cliente.
+
+**Exemplo da URl:**
+```javascript
+https://kind-jade-sturgeon-gear.cyclic.app/pedido?cliente_id=1
+```
+
+Retorno:
+
+    - Caso não seja informado o parâmetro do tipo query **cliente_id** todos os pedidos cadastrados vão ser retornados.
 
 ```javascript
 // Resposta para listagem de pedido (body)
@@ -350,9 +454,5 @@ Deveremos incluir um parâmetro do tipo query **cliente_id** para que seja poss�
 ]
 ```
 
-Critérios de aceite:
 
-    - Caso seja enviado o parâmetro do tipo query **cliente_id**, filtrar os pedidos de acordo com o cliente, caso o id do cliente informado exista.
-    - Caso não seja informado o parâmetro do tipo query **cliente_id** todos os pedidos cadastrados deverão ser retornados.
---------------------------------------------------------
 
