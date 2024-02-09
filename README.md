@@ -403,9 +403,9 @@ Essa é a rota que será utilizada para cadastrar um novo pedido no sistema.
     ]
 }
 
-**obs: Após o pedido ser cadastrado será enviado um email para o cliente informando que o pedido foi cadastrado e o valor total!**
 ```
 
+**obs: Após o pedido ser cadastrado será enviado um email para o cliente informando que o pedido foi cadastrado e o valor total!**
 --------------------------------------------------------
 
 #### `GET` `/pedido`
