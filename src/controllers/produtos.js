@@ -57,6 +57,22 @@ const cadastrarProduto = async (req, res) => {
 
 const listarProdutos = async (req, res) => {
     try {
+        const { categoria_id } = req.query
+
+        if (categoria_id) {
+            const produto = await knex('produtos')
+                .where({ categoria_id })
+                .select('produtos.id', 'produtos.descricao', 'produtos.quantidade_estoque', 'produtos.valor', 'categorias.descricao as descricao_categoria', 'produtos.categoria_id')
+                .join('categorias', 'produtos.categoria_id', '=', 'categorias.id')
+
+            return res
+                .status(200)
+                .json({
+                    status_code: 200,
+                    produto
+                })
+        }
+
         const produtos = await knex('produtos')
             .select('produtos.id', 'produtos.descricao', 'produtos.quantidade_estoque', 'produtos.valor', 'categorias.descricao as descricao_categoria', 'produtos.categoria_id')
             .join('categorias', 'produtos.categoria_id', '=', 'categorias.id')
