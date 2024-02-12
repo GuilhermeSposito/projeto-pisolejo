@@ -11,13 +11,23 @@ const login = async (req, res) => {
 
         const usuarioExiste = await knex('funcionarios').where({ email }).first()
         if (!usuarioExiste) {
-            return res.status(400).json({ message: "Senha ou Email Incorretos!" })
+            return res
+                .status(400)
+                .json({
+                    status_code: 401,
+                    message: "Senha ou Email Incorretos!"
+                })
         }
 
         const verifSenha = await bcrypt.compare(senha, usuarioExiste.senha)
 
         if (!verifSenha) {
-            return res.status(400).json({ message: "Senha ou Email Incorretos!" })
+            return res.
+                status(400)
+                .json({
+                    status_code: 401,
+                    message: "Senha ou Email Incorretos!"
+                })
         }
 
         const token = await jwt.sign({
@@ -26,7 +36,9 @@ const login = async (req, res) => {
             email: usuarioExiste.email
         }, process.env.SENHA_JWT, { expiresIn: '1d' })
 
-        return res.status(200).json(token)
+        return res
+            .status(200)
+            .json(token)
     } catch (error) {
         return res.status(400).json({ Message: error.message })
     }

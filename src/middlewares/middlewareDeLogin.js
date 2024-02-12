@@ -6,7 +6,12 @@ const validaLogin = async (req, res, next) => {
         const { authorization } = req.headers
 
         if (!authorization) {
-            return res.status(401).json({ message: "Deve ser Enviado um token!" })
+            return res
+                .status(401)
+                .json({
+                    status_code: 401,
+                    message: "Deve ser Enviado um token!"
+                })
         }
 
         const token = authorization.split(' ')[1]
@@ -16,7 +21,6 @@ const validaLogin = async (req, res, next) => {
 
         next()
     } catch (error) {
-        console.log(error)
         return res.status(401).json({ message: error.message })
     }
 }

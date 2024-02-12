@@ -22,12 +22,22 @@ const cadastrarCategoria = async (req, res) => {
         })
 
         if (categoriaRepetida) {
-            return res.status(400).json({ Message: "Categoria já existe no banco de dados!" })
+            return res
+                .status(400)
+                .json({
+                    Message: "Categoria já existe no banco de dados!"
+                })
         }
 
-        const insertCategoria = await knex('categorias').insert({ descricao: descricao }).returning('*')
+        const insertCategoria = await knex('categorias')
+            .insert({
+                descricao: descricao
+            })
+            .returning('*')
 
-        return res.status(201).json(insertCategoria)
+        return res.
+            status(201)
+            .json(insertCategoria)
     } catch (error) {
         return res.status(400).json({ message: error.message })
     }

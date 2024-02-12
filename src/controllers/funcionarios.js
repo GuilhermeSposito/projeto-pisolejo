@@ -22,9 +22,10 @@ const cadastroDeFuncionario = async (req, res) => {
             })
             .returning(["id", "nome", "email"])
 
-        return res.status(201).json(insertFuncionario)
+        return res
+            .status(201)
+            .json(insertFuncionario)
     } catch (error) {
-        console.log(error)
         return res.status(400).json({ message: error.message })
     }
 }
@@ -34,9 +35,14 @@ const detalharPerfilFuncionarioLogado = async (req, res) => {
         //aqui vai ser escrito o código que vai detalhar o usuario logado 
         const { id, nome, email } = req.funcionario
 
-        return res.status(200).json({ id, nome, email })
+        return res
+            .status(200)
+            .json({
+                id,
+                nome,
+                email
+            })
     } catch (error) {
-        console.log(error)
         return res.status(400).json({ message: error.message })
     }
 }
@@ -50,7 +56,12 @@ const editarPerfilFuncionario = async (req, res) => {
 
         const verifEmailRepetido = await knex('funcionarios').where({ email: novoEmail }).first()
         if (verifEmailRepetido && verifEmailRepetido.id != id) {
-            return res.status(400).json({ Message: 'Email Já encontrado no nosso banco de dados!' })
+            return res
+                .status(400)
+                .json({
+                    status_code: 400,
+                    Message: 'Email Já encontrado no nosso banco de dados!'
+                })
         }
 
         const senhaCrypt = await bcrypt.hash(novaSenha, 10)
@@ -64,9 +75,10 @@ const editarPerfilFuncionario = async (req, res) => {
             .where({ id })
             .returning(["id", "nome", "email"])
 
-        return res.status(201).json(updateFuncionario)
+        return res.
+            status(201)
+            .json(updateFuncionario)
     } catch (error) {
-        console.log(error)
         return res.status(400).json({ message: error.message })
     }
 }
