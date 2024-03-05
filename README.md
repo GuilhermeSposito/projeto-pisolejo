@@ -29,7 +29,7 @@ https://kind-jade-sturgeon-gear.cyclic.app/
 - Cadastrar Cliente 
 - Detalhar perfil do cliente pelo id 
 - Editar Cliente 
-- Cadastrar pedido
+- Cadastrar pedido (enviando email avisando o cliente) 
 - Deletar Pedido (enviando email avisando o cliente) 
 - Listar pedidos
 - Detalhar pedido pelo id 
